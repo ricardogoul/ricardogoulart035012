@@ -39,4 +39,8 @@ public class Artista {
     public List<Album> getAlbuns() {
         return albuns;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

@@ -2,6 +2,10 @@ package com.seplag.ricardogoulart035012.api.controller;
 
 import com.seplag.ricardogoulart035012.domain.model.artista.Artista;
 import com.seplag.ricardogoulart035012.domain.service.ArtistaService;
+import com.seplag.ricardogoulart035012.dto.request.ArtistaRequestDTO;
+import com.seplag.ricardogoulart035012.dto.response.ArtistaResponseDTO;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,29 +21,34 @@ public class ArtistaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Artista>> listar(){
-        return ResponseEntity.ok(artistaService.listarTodos());
+    @ResponseStatus(HttpStatus.OK)
+    public List<ArtistaResponseDTO> listar(){
+        return artistaService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Artista> buscarPorId(@PathVariable Long id){
-        return artistaService.buscaPorId(id)
-                .map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    @ResponseStatus(HttpStatus.OK)
+    public ArtistaResponseDTO buscarPorId(@PathVariable Long id){
+        return artistaService.buscaPorId(id);
     }
 
     @PostMapping
-    public ResponseEntity<Artista> criar(@RequestBody Artista artista){
-        Artista artistaSalvo = artistaService.salvar(artista);
-        return ResponseEntity.ok(artistaSalvo);
+    @ResponseStatus(HttpStatus.CREATED)
+    public ArtistaResponseDTO criar(@Valid @RequestBody ArtistaRequestDTO artistaDTO){
+        return artistaService.salvar(artistaDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Artista> atualizar(
+    @ResponseStatus(HttpStatus.OK)
+    public ArtistaResponseDTO atualizar(
             @PathVariable Long id,
-            @RequestBody Artista artista) {
-        return artistaService.buscaPorId(id)
-                .map(artistaSelecionado -> {artistaSelecionado.setNome(artista.getNome());
-                return ResponseEntity.ok(artistaService.salvar(artistaSelecionado));})
-                .orElse(ResponseEntity.notFound().build());
+            @Valid @RequestBody ArtistaRequestDTO artistaDTO) {
+        return artistaService.atualizar(id, artistaDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void excluir(@PathVariable Long id){
+        artistaService.excluir(id);
     }
 }

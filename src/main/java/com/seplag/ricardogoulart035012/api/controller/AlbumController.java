@@ -2,6 +2,12 @@ package com.seplag.ricardogoulart035012.api.controller;
 
 import com.seplag.ricardogoulart035012.domain.model.album.Album;
 import com.seplag.ricardogoulart035012.domain.service.AlbumService;
+import com.seplag.ricardogoulart035012.dto.request.AlbumRequestDTO;
+import com.seplag.ricardogoulart035012.dto.response.AlbumResponseDTO;
+import com.seplag.ricardogoulart035012.dto.response.ArtistaResponseDTO;
+import jakarta.validation.Valid;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,15 +24,34 @@ public class AlbumController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Album>> listar() {
-        return ResponseEntity.ok(albumService.listarTodos());
+    @ResponseStatus(HttpStatus.OK)
+    public List<AlbumResponseDTO> listar() {
+        return albumService.listarTodos();
     }
 
-    @PostMapping("/artista/{artistaId}")
-    public ResponseEntity<Album> criar(
-            @PathVariable Long artistaId,
-            @RequestBody Album album) {
-        Album albumSalvo = albumService.salvar(artistaId, album);
-        return ResponseEntity.ok(albumSalvo);
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AlbumResponseDTO buscarPorId(@PathVariable Long id){
+        return albumService.buscaPorId(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public AlbumResponseDTO criar(@Valid @RequestBody AlbumRequestDTO albumDTO) {
+        return albumService.salvar(albumDTO);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AlbumResponseDTO atualizar(
+            @PathVariable Long id,
+            @Valid @RequestBody AlbumRequestDTO albumDTO){
+        return albumService.atualizar(id, albumDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void excluir(@PathVariable Long id){
+        albumService.excluir(id);
     }
 }

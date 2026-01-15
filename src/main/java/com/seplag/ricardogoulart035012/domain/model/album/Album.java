@@ -40,4 +40,8 @@ public class Album {
     public void setArtista(Artista artista) {
         this.artista = artista;
     }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 }

@@ -22,14 +22,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> handleValidacao(MethodArgumentNotValidException ex) {
         String mensagem = ex.getBindingResult()
-                .getFieldError()
-                .getDefaultMessage();
+                .getFieldErrors()
+                .stream()
+                .findFirst()
+                .map(error -> error.getDefaultMessage())
+                .orElse("Erro de validação");
 
         ApiError error = new ApiError(
                 HttpStatus.BAD_REQUEST.value(),
                 "Erro de validação.",
                 mensagem
         );
+
         return ResponseEntity.badRequest().body(error);
     }
 
@@ -40,6 +44,8 @@ public class GlobalExceptionHandler {
                 "Erro interno",
                 "Ocorreu um erro inesperado"
         );
+
+        ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 }

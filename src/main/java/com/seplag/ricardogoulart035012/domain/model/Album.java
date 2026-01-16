@@ -1,6 +1,5 @@
-package com.seplag.ricardogoulart035012.domain.model.album;
+package com.seplag.ricardogoulart035012.domain.model;
 
-import com.seplag.ricardogoulart035012.domain.model.artista.Artista;
 import jakarta.persistence.*;
 
 @Entity

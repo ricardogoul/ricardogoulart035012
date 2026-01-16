@@ -1,12 +1,10 @@
 package com.seplag.ricardogoulart035012.api.controller;
 
-import com.seplag.ricardogoulart035012.domain.model.artista.Artista;
 import com.seplag.ricardogoulart035012.domain.service.ArtistaService;
 import com.seplag.ricardogoulart035012.dto.request.ArtistaRequestDTO;
 import com.seplag.ricardogoulart035012.dto.response.ArtistaResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

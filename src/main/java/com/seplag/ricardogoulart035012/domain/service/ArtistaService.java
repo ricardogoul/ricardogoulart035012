@@ -1,6 +1,6 @@
 package com.seplag.ricardogoulart035012.domain.service;
 
-import com.seplag.ricardogoulart035012.domain.model.artista.Artista;
+import com.seplag.ricardogoulart035012.domain.model.Artista;
 import com.seplag.ricardogoulart035012.dto.request.ArtistaRequestDTO;
 import com.seplag.ricardogoulart035012.dto.response.ArtistaResponseDTO;
 import com.seplag.ricardogoulart035012.exception.RecursoNaoEncontradoException;

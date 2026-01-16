@@ -1,6 +1,6 @@
-package com.seplag.ricardogoulart035012.domain.model.artista;
+package com.seplag.ricardogoulart035012.domain.model;
 
-import com.seplag.ricardogoulart035012.domain.model.album.Album;
+import com.seplag.ricardogoulart035012.domain.model.Album;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

@@ -1,14 +1,10 @@
 package com.seplag.ricardogoulart035012.api.controller;
 
-import com.seplag.ricardogoulart035012.domain.model.album.Album;
 import com.seplag.ricardogoulart035012.domain.service.AlbumService;
 import com.seplag.ricardogoulart035012.dto.request.AlbumRequestDTO;
 import com.seplag.ricardogoulart035012.dto.response.AlbumResponseDTO;
-import com.seplag.ricardogoulart035012.dto.response.ArtistaResponseDTO;
 import jakarta.validation.Valid;
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

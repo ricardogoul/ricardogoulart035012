@@ -1,7 +1,7 @@
 package com.seplag.ricardogoulart035012.domain.service;
 
-import com.seplag.ricardogoulart035012.domain.model.album.Album;
-import com.seplag.ricardogoulart035012.domain.model.artista.Artista;
+import com.seplag.ricardogoulart035012.domain.model.Album;
+import com.seplag.ricardogoulart035012.domain.model.Artista;
 import com.seplag.ricardogoulart035012.dto.request.AlbumRequestDTO;
 import com.seplag.ricardogoulart035012.dto.response.AlbumResponseDTO;
 import com.seplag.ricardogoulart035012.exception.RecursoNaoEncontradoException;
@@ -10,7 +10,6 @@ import com.seplag.ricardogoulart035012.infra.repository.ArtistaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AlbumService {

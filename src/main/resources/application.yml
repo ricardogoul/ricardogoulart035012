@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ricardo_db
+    url: jdbc:postgresql://postgres:5432/ricardo_db
     username: postgres
     password: ricardo123
     driver-class-name: org.postgresql.Driver
@@ -21,3 +21,9 @@ security:
     secret: minha-chave-secreta-muito-segura
     expiration: 300000
     refresh-expiration: 1800000
+
+minio:
+  url: http://minio:9000
+  access-key: minio
+  secret-key: minio123
+  bucket: images
